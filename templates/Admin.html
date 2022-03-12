@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @keyframes anim{
+	0% {text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;}
+	20% {text-shadow: 1px 1px 2px red, 0 0 25px green, 0 0 5px orange;} 	
+	40% {text-shadow: 1px 1px 2px yellow, 0 0 25px red, 0 0 5px green;}
+	60% {text-shadow: 1px 1px 2px orange, 0 0 25px yellow, 0 0 5px pink;}
+	80% {text-shadow: 1px 1px 2px aquawhite, 0 0 25px violet, 0 0 5px yellow;}
+	100% {text-shadow: 1px 1px 2px green, 0 0 25px yellow, 0 0 5px orange;}
+}
+body{
+    font-family: Calibri, Helvetica, sans-serif;  
+    background-color: lightblue;
+}
+.welcome{
+    left:0;  top:0;text-align:center;color:brown;animation-name: anim; animation-duration: 1.5s;
+    animation-iteration-count: infinite;animation-direction:alternate;
+    font-family: Bookman Old Style;
+    margin-top: 1%;
+    width: 100%;
+    vertical-align:middle;
+}
+.title{
+    text-align:center;
+}
+.description{
+    display:inline-block;
+    margin-left:2%;
+    margin-right:2%;
+    font-size: 100%;
+}
+.select{
+    display:inline-block;font-size: 90%;
+    margin-left: 40%;
+    margin-bottom: 4%;
+    width:80px;padding:1%;
+    border-radius: 10%;
+    border: none;
+    background-color: green;color: white;
+}
+.select:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.select:active {
+  background-color: green;
+  opacity: 1;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+        </style>
+    </head>
+    <body>
+        <h2 class="welcome">WELCOME ADMIN</h2>
+        <fieldset style="border:3px solid blue; margin-left: 20%; margin-right: 20%; margin-top: 2%;">
+            <!--<legend class="colorchange">HOME</Details></legend>-->
+            <h2 class="title">SELECT THE TYPE OF OPERATION:</h1>
+            <button class="select" onclick="document.location='/student_register'">Add Student</button><p class="description">Adding a new Student</p>
+            <button class="select" onclick="document.location='/student_register'">Update Student</button><p class="description">Updating Student Detail</p>
+            <button class="select" onclick="document.location='/student_register'">Remove Student</button><p class="description">Removing Student from school</p>
+            <button class="select" onclick="document.location='/teacher_register'">Add Teacher</button><p class="description">Adding a new Teacher</p>
+            <button class="select" onclick="document.location='/teacher_register'">Update Teacher</button><p class="description">Updating StudentTeacher</p>
+            <button class="select" onclick="document.location='/teacher_register'">Remove Teacher</button><p class="description">Removing Student fromTeacher</p>
+
+        </fieldset>
+    </body>
+</html>

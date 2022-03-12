@@ -1,0 +1,84 @@
+<!DOCTYPE html>  
+<html>  
+<head>
+<title>Teacher Registration</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: lightblue;  
+}  
+.container {  
+  padding: 10px;  
+}  
+  
+input[type=text],input[type=password],select{  
+  width: 50%;  
+  padding: 15px;  
+  margin: 1% 10% 1% 22%;  
+  display: block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus,input[type=password]:focus {  
+  background-color: orange;  
+  outline: none;
+}  
+ div{  
+    padding: 10px 0;  
+}  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: green;  
+  color: white;font-size:125%;  
+  padding: 10px;  
+  margin: 1% 1% 1% 25%;  
+  border: none;  
+  cursor: pointer;  
+  width: 20%;  
+}  
+.registerbtn:hover {  
+  opacity:0.8;  
+}
+.registerbtn:active{
+  background-color: green;
+  opacity: 1;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.detailname{
+    margin-left:22%;
+    margin-right: 5%;
+    font-weight: bold;
+}
+</style>  
+</head>  
+<body>  
+<form>  
+  <div class="container">  
+    <center>  <h1> Teacher Registration</h1> </center>  
+    <hr>  
+    <label class="detailname"><b>Name</b></label>   
+    <input type="text" name="name" placeholder= "Name" size="15" required />
+    <label class="detailname"><b>Section ID</b></label>   
+    <input type="text" name="section" placeholder= "Section" size="5" required />
+    <label class="detailname">Teacher type</label>
+    <select name="teachertype">
+        <option value="primary">Primary</option>
+        <option value="secondary">Secondary</option>
+    </select>
+    <label  class="detailname" for="email"><b>Email</b></label>  
+    <input type="text" placeholder="Enter Email" name="email" required />  
+    <label  class="detailname" for="psw"><b>Password</b></label>  
+    <input type="password" placeholder="Enter Password" name="psw" required />  
+    <label  class="detailname" for="psw-repeat"><b>Re-type Password</b></label>  
+    <input type="password" placeholder="Retype Password" name="psw-repeat" required />  
+    <button type="submit" class="registerbtn">Register</button>
+    <button type="button" class="registerbtn" style="margin-left: 1%; margin-right: 3%;"> Cancel</button>   
+  </div>   
+</form>  
+</body>  
+</html>
