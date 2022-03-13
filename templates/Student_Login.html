@@ -3,76 +3,51 @@
 <head>
 <title>Student Login</title> 
 <meta name="viewport" content="width=device-width, initial-scale=1">  
-<style>  
-body{  
-  font-family: Calibri, Helvetica, sans-serif;  
-  background-color: lightblue;  
-}  
-.container {  
-  padding: 10px;  
-}  
+<link rel="stylesheet" href="Home.css"/>
+<style>
+  .container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  }
   
-input[type=text],input[type=password]{  
-  width: 50%;  
-  padding: 15px;  
-  margin: 1% 10% 1% 22%;  
-  display: block;  
-  border: none;  
-  background: #f1f1f1;  
-}  
-input[type=text]:focus,input[type=password]:focus {  
-  background-color: orange;  
-  outline: none;
-}  
- div{  
-    padding: 10px 0;  
-}  
-hr {  
-  border: 1px solid #f1f1f1;  
-  margin-bottom: 25px;  
-}  
-.registerbtn {  
-  background-color: green;display:inline-block;
-  color: white;font-size:125%;  
-  padding: 10px;  
-  margin: 1% 1% 1% 25%;  
-  border: none;  
-  cursor: pointer;  
-  width: 20%;  
-}
-.registerbtn:hover {  
-  opacity:0.8;  
-}
-.registerbtn:active{
-  background-color: green;
-  opacity: 1;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-.detailname{
-    margin-left:22%;
-    margin-right: 5%;
-}
-.forgot{
-    display: inline-block;
-    border: 1px solid black; 
-    width:20%;padding:1%;margin-left: 45%;
-    font-weight: bold;
-}
-</style>  
+  label{
+text-align: start;
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+    text-align: end;
+  }
+</style>
 </head>  
 <body>  
 <form method="post" action="/student/login">  
-  <div class="container">  
+  <div class="container" >  
     <center>  <h1> Student Login</h1> </center>  
     <hr>  
-    <label class="detailname"><b>Student ID</b></label>   
+    <label><b>Student ID</b></label>   
     <input type="text" name="id" placeholder= "Enter ID" size="15" required />  
-    <label  class="detailname" for="psw"><b>Password</b></label>  
+    <label  for="psw"><b>Password</b></label>  
     <input type="password" placeholder="Enter Password" name="psw" required />   
-    <button type="submit" class="registerbtn">Login</button>
-    <button type="button" onclick="document.location='/'"class="registerbtn" style="margin-left: 1%; margin-right: 3%;"> Cancel</button>   
-    <b style="font-size: 125%;">Forgot <a href="#"> password? </a></b>
+    <a href="#">
+      <b style="font-size: 15px;text-align: end;">Forgot password?</b>
+    </a>
+    <button type="submit" class="login-button slide">Login</button>
   </div>   
 </form>  
 </body>  
