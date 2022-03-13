@@ -1,0 +1,137 @@
+<H1>My Timetable</H1>
+<TABLE class="myTimetable"> 
+  <THEAD>
+<link rel="stylesheet" href="display.css">
+<link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+<h2>&nbsp&nbspName: {{ name }}</h2>
+<h2>&nbsp&nbspReg No: {{ reg }}</h2>
+<h2>&nbsp&nbspClass: {{ class }}</h2>
+<h2>&nbsp&nbspSection: {{ sec }}</h2>
+    <TR>
+      <TH></TH>
+      <TH>Monday</TH>
+      <TH>Tuesday</TH>
+      <TH>Wednesday</TH>
+      <TH>Thursday</TH>
+      <TH>Friday</TH>     
+    </TR>
+  </THEAD>
+
+<br>
+  <TBODY>
+    <TR>
+      <TD>P1</TD>
+      <TD>
+        <div class="subject">Science</div>
+      </TD>
+      <TD>
+        <div class="subject">Art</div>
+      </TD>
+      <TD>        
+        <div class="subject">English</div>
+      </TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+       <TD>        
+         <div class="subject">Language</div>
+      </TD>     
+    </TR>
+    <TR>
+      <TD>P2</TD>
+      <TD>        
+        <div class="subject">Science</div>
+      </TD>
+      <TD>        
+        <div class="subject">English</div>
+      </TD>
+      <TD>        
+        <div class="subject">Language</div>
+      </TD>
+      <TD>        
+        <div class="subject">Socail</div>
+      </TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+    </TR>
+      <TR>
+      <TD colspan="6" class="break">Break</TD>
+      </TR>
+      <TR>
+      <TD>P3</TD>
+      <TD>        
+        <div class="subject">Social</div>
+      </TD>
+      <TD>        
+        <div class="subject">English</div>
+      </TD>
+      <TD>        
+        <div class="subject">Music</div>
+      </TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+      <TD>        
+        <div class="subject">Social</div>
+      </TD>
+    </TR>
+      <TR>
+      <TD colspan="6" class="lunch">Lunch</TD>
+    </TR>
+      <TR>
+      <TD>P4</TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+      <TD>        
+        <div class="subject">Science</div>
+      </TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+      <TD>        
+        <div class="subject">Geography</div>
+      </TD>
+      <TD>        
+        <div class="subject">P.E.</div>
+      </TD>
+    </TR>
+      <TR>
+      <TD>P5</TD>
+      <TD>        
+        <div class="subject">Social</div>
+      </TD>
+      <TD>        
+        <div class="subject">Science</div>
+      </TD>
+      <TD>        
+        <div class="subject">English</div>
+      </TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+      <TD>        
+        <div class="subject">Arts</div>
+      </TD>
+    </TR>
+      <TR>
+      <TD>P6</TD>
+      <TD>        
+        <div class="subject">Maths</div>
+      </TD>
+      <TD>        
+        <div class="subject">Science</div>
+      </TD>
+      <TD>        
+        <div class="subject">English</div>
+      </TD>
+      <TD>        
+        <div class="subject">Science</div>
+      </TD>
+      <TD>        
+        <div class="subject">Social</div>
+      </TD>
+    </TR>
+   </TBODY>
+  </TABLE>
