@@ -7,14 +7,16 @@ import jwt
 from functools import wraps
 from starlette import status 
 from fastapi.staticfiles import StaticFiles
+import requests
 
+from constants import *
 
 
 
 
 # star = Starlette(routes=routes)
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 SECRET_KEY = 'mistakeisnotamistakeunlessmistaken'
 templates = Jinja2Templates(directory="templates")
@@ -51,10 +53,15 @@ def generate_jwt(user_data):
 def validate_jwt(token):
     try:
         data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        # print(data)
         return True
     except:
         return False
+
+def token_to_data(token):
+    
+    data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+    
+    return data
 
 
 
@@ -78,14 +85,16 @@ async def student_login(request: Request):
     if request.method == 'POST':
         data = await (request.form())
         
-        json={
-            "username":data['id'],
+        login_data={
+            "email":data['id'],
             "password":data['psw']
         }
-        #TODO call api ,success home,failure same
-        success=True
-        if success:
-            token =generate_jwt(json)
+
+        response=requests.post(STUDENT_LOGIN_ENDPOINT,json=login_data)
+        response_json=response.json()
+        isSuccess=response_json['success']
+        if isSuccess:
+            token =generate_jwt(response_json['user'])
             response = RedirectResponse(url='/student/timetable',status_code=status.HTTP_302_FOUND)
             response.set_cookie('token', token)
             return response
@@ -126,18 +135,27 @@ def teacher_login(request: Request):
         return templates.TemplateResponse("Teacher_Login.html",{"request": request})'''
 
 
-@app.get("/student_register", response_class=HTMLResponse)
-def student_register(request: Request):
+@app.route("/student/register",methods=['GET','POST'])
+async def student_register(request: Request):
+    if request.method == 'POST':
+        data =  await (request.form())
+        print(data)
+        pass
     return templates.TemplateResponse("Student_Registration.html",{"request": request})
 
 @app.get("/teacher_register", response_class=HTMLResponse)
-def teacher_call(request: Request):
+def teacher_register(request: Request):
+
     return templates.TemplateResponse("Teacher_Registration.html",{"request": request})
 
 @app.route("/student/timetable")
 @token_check
 def timetable(request: Request):
-    return templates.TemplateResponse("TimeTable.html",{"request": request})
+    student_data = token_to_data(request.cookies.get('token'))
+    request_url = GET_TIMETABLE_ENDPOINT +"/%22"+student_data['std']+"%22/%22"+student_data['section']+"%22"
+    response = requests.get(request_url)
+    timetable = response.json()
+    return templates.TemplateResponse("TimeTable.html",{"request": request,"timetable":timetable['timetable']})
 
 @app.route("/student/logout",methods=['GET'])
 @token_check

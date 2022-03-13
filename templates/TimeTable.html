@@ -11,8 +11,7 @@
  
 
 
-
-    <H1>My Timetable</H1>
+    <H1>Timetable : {{timetable[0]['std']}}-{{timetable[0]['section']}}</H1>
     <TABLE class="myTimetable"> 
       <THEAD>
         <TR>
@@ -26,125 +25,137 @@
       </THEAD>
       <TBODY>
         <TR>
-          <TD>P1</TD>
-          <TD>
-            <div class="subject">Maths</div>
-            <div class="room">A120</div>
+          <TD>P1 (9:00-10:00 AM)</TD>
           </TD>
           <TD>
-            <div class="subject">Art</div>
-            <div class="room">C1</div>
+            <div class="subject">{{timetable[0]['p_one']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_one']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">English</div>
-            <div class="room">B21</div>
+            <div class="subject">{{timetable[2]['p_one']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">Maths</div>
-            <div class="room">A120</div>
+            <div class="subject">{{timetable[3]['p_one']}}</div>
           </TD>
            <TD>        
-             <div class="subject">Geography</div>
-            <div class="room">B101</div>
+            <div class="subject">{{timetable[4]['p_one']}}</div>
           </TD>     
         </TR>
         <TR>
-          <TD>P2</TD>
-          <TD>        
-            <div class="subject">Science</div>
-            <div class="room">Lab1</div>
+          <TD>P2 (10:00-11:00 AM)</TD>
+          <TD>
+            <div class="subject">{{timetable[0]['p_two']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_two']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">History</div>
-            <div class="room">B104</div>
+            <div class="subject">{{timetable[2]['p_two']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">Spanish</div>
-            <div class="room">C17</div>
+            <div class="subject">{{timetable[3]['p_two']}}</div>
           </TD>
-          <TD>        
-            <div class="subject">P.E.</div>
-            <div class="room">A Gym</div>
-          </TD>
-          <TD>        
-            <div class="subject">Maths</div>
-            <div class="room">A120</div>
-          </TD>
+           <TD>        
+            <div class="subject">{{timetable[4]['p_two']}}</div>
+          </TD> 
         </TR>
           <TR>
-          <TD colspan="6" class="break">Break</TD>
+          <TD colspan="6" class="break">Break (11:00-11:30 AM)</TD>
           </TR>
           <TR>
-          <TD>P3</TD>
-          <TD>        
-            <div class="subject">I.T.</div>
-            <div class="room">ICT 1</div>
+          <TD>P3 (11:30-12:30 PM)</TD>
+          <TD>
+            <div class="subject">{{timetable[0]['p_three']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_three']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">English</div>
-            <div class="room">B21</div>
+            <div class="subject">{{timetable[2]['p_three']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">Musique</div>
-            <div class="room">C5</div>
+            <div class="subject">{{timetable[3]['p_three']}}</div>
           </TD>
-          <TD>        
-            <div class="subject">English</div>
-            <div class="room">B21</div>
-          </TD>
-          <TD>        
-            <div class="subject">PSHE</div>
-            <div class="room">A24</div>
-          </TD>
+           <TD>        
+            <div class="subject">{{timetable[4]['p_three']}}</div>
+          </TD> 
         </TR>
           <TR>
-          <TD colspan="6" class="lunch">Lunch</TD>
+          <TD colspan="6" class="lunch">Lunch (12:30-1:30 PM)</TD>
         </TR>
           <TR>
-          <TD>P4</TD>
-          <TD>        
-            <div class="subject">History</div>
-            <div class="room">B104</div>
+          <TD>P4 (1:30-2:30 PM)</TD>
+          <TD>
+            <div class="subject">{{timetable[0]['p_four']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_four']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">Drama</div>
-            <div class="room">C17</div>
+            <div class="subject">{{timetable[2]['p_four']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">Maths</div>
-            <div class="room">A120</div>
+            <div class="subject">{{timetable[3]['p_four']}}</div>
           </TD>
-          <TD>        
-            <div class="subject">Geography</div>
-            <div class="room">B101</div>
-          </TD>
-          <TD>        
-            <div class="subject">P.E.</div>
-            <div class="room">A Gym</div>
-          </TD>
+           <TD>        
+            <div class="subject">{{timetable[4]['p_four']}}</div>
+          </TD> 
         </TR>
           <TR>
-          <TD>P5</TD>
-          <TD>        
-            <div class="subject">Spanish</div>
-            <div class="room">C17</div>
+          <TD>P5 (2:30-3:30 PM)</TD>
+          <TD>
+            <div class="subject">{{timetable[0]['p_five']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_five']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">Science</div>
-            <div class="room">Lab1</div>
+            <div class="subject">{{timetable[2]['p_five']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">English</div>
-            <div class="room">B21</div>
+            <div class="subject">{{timetable[3]['p_five']}}</div>
+          </TD>
+           <TD>        
+            <div class="subject">{{timetable[4]['p_five']}}</div>
+          </TD> 
+        </TR>
+        <TR>
+          <TD>P6 (3:30-4:30 PM)</TD>
+          <TD>
+            <div class="subject">{{timetable[0]['p_six']}}</div>
+            
+          </TD>
+          <TD>
+            <div class="subject">{{timetable[1]['p_six']}}</div>
+            
           </TD>
           <TD>        
-            <div class="subject">Science</div>
-            <div class="room">Lab1</div>
+            <div class="subject">{{timetable[2]['p_six']}}</div>
+           
           </TD>
           <TD>        
-            <div class="subject">R.E.</div>
-            <div class="room">B18</div>
+            <div class="subject">{{timetable[3]['p_six']}}</div>
           </TD>
+           <TD>        
+            <div class="subject">{{timetable[4]['p_six']}}</div>
+          </TD> 
         </TR>
        </TBODY>
       </TABLE>
