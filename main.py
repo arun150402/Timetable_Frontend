@@ -1,13 +1,37 @@
 from fastapi import FastAPI,Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse,RedirectResponse
 from fastapi.templating import Jinja2Templates
-
+import jwt
+from functools import wraps
 app = FastAPI()
+
 templates = Jinja2Templates(directory="templates")
 
+
+
+def token_required(func):
+    @wraps(func)
+    def decorator(request):
+        cookies = request.cookies
+        if cookies.get('token'):
+            return func(request)
+        return RedirectResponse(url='/student')
+    return decorator
+
+def set_jwt():
+    pass    
+
+def validate_jwt():
+    pass
+
 @app.get("/", response_class=HTMLResponse)
+@token_required
 def read_item(request: Request):
-    return templates.TemplateResponse("Home.html",{"request": request})
+    #print(request.cookies)
+    response =templates.TemplateResponse("Home.html",{"request": request})
+    #response.set_cookie("token","12345")
+    return response
+    # return templates.TemplateResponse("Home.html",{"request": request})
 
 @app.get("/admin", response_class=HTMLResponse)
 def admin_page(request: Request):
