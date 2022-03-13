@@ -1,8 +1,10 @@
 from fastapi import FastAPI,Request
 from fastapi.responses import HTMLResponse,RedirectResponse
 from fastapi.templating import Jinja2Templates
+from grpc import StatusCode
 import jwt
 from functools import wraps
+from starlette import status 
 
 app = FastAPI()
 SECRET_KEY = 'mistakeisnotamistakeunlessmistaken'
@@ -12,7 +14,7 @@ templates = Jinja2Templates(directory="templates")
 
 def token_check(func):
     @wraps(func)
-    def decorator(request:Request):
+    async def decorator(request:Request):
         
         cookies = request.cookies
         if cookies.get('token'):
@@ -22,6 +24,10 @@ def token_check(func):
                     response = RedirectResponse(url='/student/timetable')
                     return response
                 return func(request)
+        else:
+            print(request.url.path)
+            if request.url.path == '/student/login' or request.url.path == '/teacher/login':
+                return await func(request)
         return RedirectResponse(url='/')
     return decorator
 
@@ -62,6 +68,7 @@ async def student_login(request: Request):
     
     if request.method == 'POST':
         data = await (request.form())
+        
         json={
             "username":data['id'],
             "password":data['psw']
@@ -70,7 +77,7 @@ async def student_login(request: Request):
         success=True
         if success:
             token =generate_jwt(json)
-            response = RedirectResponse(url='/student/timetable')
+            response = RedirectResponse(url='/student/timetable',status_code=status.HTTP_302_FOUND)
             response.set_cookie('token', token)
             return response
         else:
