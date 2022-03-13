@@ -1,3 +1,4 @@
+from pathlib import Path
 from fastapi import FastAPI,Request
 from fastapi.responses import HTMLResponse,RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -5,8 +6,16 @@ from grpc import StatusCode
 import jwt
 from functools import wraps
 from starlette import status 
+from fastapi.staticfiles import StaticFiles
 
+
+
+
+
+# star = Starlette(routes=routes)
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 SECRET_KEY = 'mistakeisnotamistakeunlessmistaken'
 templates = Jinja2Templates(directory="templates")
 

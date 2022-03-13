@@ -5,6 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">  
 <link rel="stylesheet" href="Home.css"/>
 <style>  
+
+
+
+  body{
+    color: #fff;
+    background: linear-gradient(to right, #2B32B2, #1488CC);
+     font: 300 1em 'Fira Sans', sans-serif;
+     justify-content: center;
+     align-content: center;
+     align-items: center;
+     text-align: center;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+}
+.welcome{
+    left:0;  top:0;text-align:center;color:white;
+    font-family: Bookman Old Style;
+    margin-top: 3%;
+    width: 100%;
+    vertical-align:middle;
+}
+.title{
+    text-align:center;
+}
+.description{
+    display:inline-block;
+    margin-left:2%;
+    margin-right:2%;
+    font-size: 100%;
+}
+
+.slide:hover, .slide:focus {
+     box-shadow: inset 15em 0 0 0 var(--hover);
+}
+ 
+
+ .slide {
+     --color: rgb(255, 255, 255);
+     --hover: #000;
+   border-radius:20px;
+}
+ 
+ .login-button {
+     color: var(--color);
+     transition: 0.25s;
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     gap:10px;
+     width: 200px;
+}
+ .login-button:hover, .login-button:focus {
+     border-color: var(--hover);
+     color: #fff;
+}
+
+ .login-button {
+     background: none;
+     border: 2px solid;
+     font: inherit;
+     line-height: 1;
+     margin: 1.5em;
+     padding: 1em 1em;
+ }
+
+
+
+
+
+
 .container{
   display: flex;
   flex-direction: column;
