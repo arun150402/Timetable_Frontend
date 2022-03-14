@@ -4,92 +4,133 @@
         <title>Admin Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="Home.css" rel="stylesheet"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 
         <style>
-            body{
+            body {
                 color: #fff;
                 background: linear-gradient(to right, #2B32B2, #1488CC);
-                 font: 300 1em 'Fira Sans', sans-serif;
-                 justify-content: center;
-                 align-content: center;
-                 align-items: center;
-                 text-align: center;
-                 min-height: 100vh;
-                 display: flex;
-                 flex-direction: column;
+                font: 300 1em 'Fira Sans', sans-serif;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                text-align: center;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
             }
-            .welcome{
-                left:0;  top:0;text-align:center;color:white;
+            .welcome {
+                left: 0;
+                top: 0;
+                text-align: center;
+                color: white;
                 font-family: Bookman Old Style;
                 margin-top: 3%;
                 width: 100%;
-                vertical-align:middle;
+                vertical-align: middle;
             }
-            .title{
-                text-align:center;
+            .title {
+                text-align: center;
             }
-            .description{
-                display:inline-block;
-                margin-left:2%;
-                margin-right:2%;
+            .description {
+                display: inline-block;
+                margin-left: 2%;
+                margin-right: 2%;
                 font-size: 100%;
             }
-            
-            .slide:hover, .slide:focus {
-                 box-shadow: inset 15em 0 0 0 var(--hover);
+
+            .slide:hover,
+            .slide:focus {
+                box-shadow: inset 15em 0 0 0 var(--hover);
             }
-             
-            
-             .slide {
-                 --color: rgb(255, 255, 255);
-                 --hover: #000;
-               border-radius:20px;
+
+
+            .slide {
+                --color: rgb(255, 255, 255);
+                --hover: #000;
+                border-radius: 20px;
             }
-             
-             .login-button {
-                 color: var(--color);
-                 transition: 0.25s;
-                 display: flex;
-                 flex-direction: row;
-                 justify-content: center;
-                 gap:10px;
-                 width: 200px;
+
+            .login-button {
+                color: var(--color);
+                transition: 0.25s;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 10px;
+                width: 200px;
             }
-             .login-button:hover, .login-button:focus {
-                 border-color: var(--hover);
-                 color: #fff;
+            .login-button:hover,
+            .login-button:focus {
+                border-color: var(--hover);
+                color: #fff;
             }
-            
-             .login-button {
-                 background: none;
-                 border: 2px solid;
-                 font: inherit;
-                 line-height: 1;
-                 margin: 1.5em;
-                 padding: 1em 1em;
-             }
-            
-            </style>    
-               
+
+            .login-button {
+                background: none;
+                border: 2px solid;
+                font: inherit;
+                line-height: 1;
+                margin: 1.5em;
+                padding: 1em;
+            }
+        </style>
+
 
     </head>
+    
     <body>
         <h2 class="welcome">WELCOME ADMIN</h2>
-            <div style="display: flex;">
-                <div>
-                    <button class="login-button slide" onclick="document.location='/student/register'"><i class="fa fa-plus" style="font-size:20px;"></i> Add Student</button>
-                <button class="login-button slide" onclick="document.location='/student_register'"><i class="fa fa-pen" style="font-size:15px;"></i> Update Student</button>
-                <button class="login-button slide" onclick="document.location='/student_register'"><i class="fa fa-trash" style="font-size:15px;"></i> Remove Student</button>
-                </div>
-                
-                <div>
-                    <button class="login-button slide" onclick="document.location='/teacher_register'"><i class="fa fa-plus" style="font-size:20px;"></i> Add Teacher</button>
-                <button class="login-button slide" onclick="document.location='/teacher_register'"><i class="fa fa-pen" style="font-size:15px;"></i> Update Teacher</button>
-                <button class="login-button slide" onclick="document.location='/teacher_register'"><i class="fa fa-trash" style="font-size:15px;"></i> Remove Teacher</button>
-                </div>
+        <div style="display: flex;">
+            <div>
+                <form id="form" enctype="multipart/form-data" action="/admin/upload" method="post"><input type="file" id="actual-btn" name="file">
+                    <input style="display:none" type="file" id="my-file" hidden>
+                    <label for="my-file" type="submit" for="actual-btn" class="login-button slide" ><i class="fa fa-plus" style="font-size:20px;"></i> Upload Students</label>
+                </form>
+                <button class="login-button slide" onclick="document.location='/student/register'">
+                    <i class="fa fa-plus" style="font-size:20px;"></i>
+                    Add Student</button>
+                <!-- <button class="login-button slide" onclick="document.location='/student_register'">
+                    <i class="fa fa-pen" style="font-size:15px;"></i>
+                    Update Student</button>
+                <button class="login-button slide" onclick="document.location='/student_register'">
+                    <i class="fa fa-trash" style="font-size:15px;"></i>
+                    Remove Student</button> -->
             </div>
+
+            <div>
+                <button class="login-button slide" onclick="generate()">
+                    <i class="fa fa-trash" style="font-size:15px;"></i>
+                    Generate Timetable</button>
+                <!-- <button class="login-button slide" onclick="document.location='/teacher_register'">
+                    <i class="fa fa-plus" style="font-size:20px;"></i>
+                    Add Teacher</button>
+                <button class="login-button slide" onclick="document.location='/teacher_register'">
+                    <i class="fa fa-pen" style="font-size:15px;"></i>
+                    Update Teacher</button>
+                <button class="login-button slide" onclick="document.location='/teacher_register'">
+                    <i class="fa fa-trash" style="font-size:15px;"></i>
+                    Remove Teacher</button> -->
+                <button class="login-button slide" onclick="document.location='/admin/logout'">
+                    <i class="fa fa-trash" style="font-size:15px;"></i>Logout</button>
+            </div>
+        </div>
     </body>
+    <script>
+        document.getElementById("my-file").onchange = function() {
+            document.getElementById("form").submit();
+        };
+function generate(){
+    const url="http://20.62.141.224/admin/generate";
+
+ fetch(url,{method:'POST'}).then(()=>{
+        alert("Timetable Generated");
+    }).catch(err=>{
+        console.log(err);
+    
+ });
+}
+
+    </script>
 </html>

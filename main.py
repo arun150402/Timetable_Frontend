@@ -1,5 +1,5 @@
 from pathlib import Path
-from fastapi import FastAPI,Request
+from fastapi import FastAPI, File,Request
 from fastapi.responses import HTMLResponse,RedirectResponse
 from fastapi.templating import Jinja2Templates
 from grpc import StatusCode
@@ -8,6 +8,7 @@ from functools import wraps
 from starlette import status 
 from fastapi.staticfiles import StaticFiles
 import requests
+
 
 from constants import *
 
@@ -31,13 +32,13 @@ def token_check(func):
         if cookies.get('token'):
             token = cookies.get('token')
             if validate_jwt(token):
-                if request.url.path == '/student/login' or request.url.path == '/teacher/login':
+                if request.url.path == '/student/login' or request.url.path == '/admin/login':
                     response = RedirectResponse(url='/student/timetable')
                     return response
                 return func(request)
         else:
             print(request.url.path)
-            if request.url.path == '/student/login' or request.url.path == '/teacher/login':
+            if request.url.path == '/student/login' or request.url.path == '/admin/login':
                 return await func(request)
         return RedirectResponse(url='/')
     return decorator
@@ -75,6 +76,7 @@ def home(request: Request):
    
 
 @app.get("/admin", response_class=HTMLResponse)
+@token_check
 def admin_page(request: Request):
     return templates.TemplateResponse("Admin.html",{"request": request})
 
@@ -136,6 +138,7 @@ def teacher_login(request: Request):
 
 
 @app.route("/student/register",methods=['GET','POST'])
+@token_check
 async def student_register(request: Request):
     if request.method == 'POST':
         data =  await (request.form())
@@ -157,7 +160,49 @@ def timetable(request: Request):
     timetable = response.json()
     return templates.TemplateResponse("TimeTable.html",{"request": request,"timetable":timetable['timetable']})
 
+
+@app.route("/admin/login",methods=['GET','POST'])
+@token_check
+async def admin_login(request: Request):
+    if request.method == 'POST':
+        data = await (request.form())
+        if(data['id']=='admin' and data['psw']=='admin'):
+            token =generate_jwt({"id":data['id'],"password":data['psw']})
+           
+            response = RedirectResponse(url='/admin',status_code=status.HTTP_302_FOUND)
+            response.set_cookie('token', token)
+            return response       
+        return templates.TemplateResponse("Admin_Login.html",{"request": request}) 
+    else:
+        return templates.TemplateResponse("Admin_Login.html",{"request": request})
+
+
+@app.post("/admin/upload")
+def upload(request: Request):
+    print('file received')
+    resp = requests.request(
+        method=request.method,
+        url= ADMIN_UPLOAD_CSV_ENDPOINT,
+        data=request.get_data(),
+        cookies=request.cookies,
+        allow_redirects=False)
+    response = Response(resp.content, resp.status_code)
+    return response
+
+
+@app.route("/teacher/login")
+def teacher_login(request: Request):
+    return templates.TemplateResponse("Teacher_Login.html",{"request": request})
+
+
 @app.route("/student/logout",methods=['GET'])
+@token_check
+def student_logout(request: Request):
+    response = RedirectResponse(url='/')
+    response.delete_cookie('token')
+    return response
+
+@app.route("/admin/logout",methods=['GET'])
 @token_check
 def student_logout(request: Request):
     response = RedirectResponse(url='/')
