@@ -213,7 +213,7 @@ async def teacher_timetable(request: Request,):
             + data['subject']
             + "%22"
         )
-        #print(request_url)
+        print(request_url)
         response = requests.get(request_url)
         timetable = response.json()
         #print(timetable)
