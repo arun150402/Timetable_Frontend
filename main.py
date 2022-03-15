@@ -230,6 +230,14 @@ def student_logout(request: Request):
     return response
 
 
+@app.post("/admin/generate")
+@token_check
+def generate(request: Request):
+    response = requests.post(ADMIN_GENERATE_TIMETABLE_ENDPOINT)
+    #print(response.json())
+    return RedirectResponse(url="/admin", status_code=status.HTTP_302_FOUND)
+
+
 @app.route("/admin/logout", methods=["GET"])
 @token_check
 def admin_logout(request: Request):

@@ -100,9 +100,11 @@
             </div>
 
             <div>
-                <button class="login-button slide" onclick="generate()">
+                <form method="post" action="/admin/generate">
+                <button class="login-button slide"  type="submit">
                     <i class="fa fa-trash" style="font-size:15px;"></i>
                     Generate Timetable</button>
+                </form>
                 <!-- <button class="login-button slide" onclick="document.location='/teacher_register'">
                     <i class="fa fa-plus" style="font-size:20px;"></i>
                     Add Teacher</button>
@@ -122,8 +124,8 @@
             document.getElementById("form").submit();
         };
 function generate(){
-    const url="http://20.62.141.224/admin/generate";
-
+    const url="http://middle.npc203.ml/admin/generate";
+console.log("clicked");
  fetch(url,{method:'POST'}).then(()=>{
         alert("Timetable Generated");
     }).catch(err=>{
