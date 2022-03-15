@@ -165,7 +165,8 @@ def timetable(request: Request):
     response = requests.get(request_url)
     timetable = response.json()
     return templates.TemplateResponse(
-        "TimeTable.html", {"request": request, "timetable": timetable["timetable"]}
+        "TimeTable.html", {"request": request,
+                           "timetable": timetable["timetable"]}
     )
 
 
@@ -177,7 +178,8 @@ async def admin_login(request: Request):
         if data["id"] == "admin" and data["psw"] == "admin":
             token = generate_jwt({"id": data["id"], "password": data["psw"]})
 
-            response = RedirectResponse(url="/admin", status_code=status.HTTP_302_FOUND)
+            response = RedirectResponse(
+                url="/admin", status_code=status.HTTP_302_FOUND)
             response.set_cookie("token", token)
             return response
         return templates.TemplateResponse("Admin_Login.html", {"request": request})
@@ -188,15 +190,36 @@ async def admin_login(request: Request):
 @app.post("/admin/upload")
 def upload(request: Request, file: bytes = File(...)):
     df = pandas.read_csv(BytesIO(file))
-    resp = requests.post(
-        "http://middle.npc203.ml/admin/upload_csv", json=df.to_json()
-    )  # TODO remove HARCODED URL
+    resp = requests.post(ADMIN_UPLOAD_CSV_ENDPOINT, json=df.to_json()
+                         )  # TODO remove HARCODED URL
     return str(resp.status_code)
 
 
 @app.route("/teacher/login")
 def teacher_login(request: Request):
     return templates.TemplateResponse("Teacher_Login.html", {"request": request})
+
+
+@app.route("/teacher/timetable",methods=['GET','POST'])
+async def teacher_timetable(request: Request,):
+    if request.method == "POST":
+        data = await request.form()
+        #print(data['subject'],data['grade'])
+        request_url = (
+            GET_TEACHER_TIMETABLE_ENDPOINT
+            + "/%22"
+            + data['grade']
+            + "%22/%22"
+            + data['subject']
+            + "%22"
+        )
+        #print(request_url)
+        response = requests.get(request_url)
+        timetable = response.json()
+        #print(timetable)
+        return templates.TemplateResponse("Teacher_Timetable.html", {"request": request,"timetable": timetable["timetable"],"grade":data['grade'],"subject":data['subject']})
+    else:
+        return RedirectResponse(url="/teacher/login", status_code=status.HTTP_302_FOUND)
 
 
 @app.route("/student/logout", methods=["GET"])
